@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
-export const useDraggable = (initialWidth, minWidth = 160) => {
+export const useDraggable = (initialWidth, minWidth = 160, maxWidth) => {
     const [width, setWidth] = useState(initialWidth);
 
     const doDrag = useCallback((newWidth) => {
-        setWidth(Math.max(newWidth, minWidth));
+        setWidth(Math.min(Math.max(newWidth, minWidth), maxWidth ?? Infinity));
     }, [minWidth]);
 
     const startDrag = useCallback((startX, startWidth) => {

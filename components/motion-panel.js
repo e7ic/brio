@@ -7,7 +7,7 @@ import {AddPlusIcon, EyeIcon, ImageIcon, TextIcon, TrianglesIcon, UnlockIcon} fr
 import { useDraggable } from "@/hooks/use-draggable";
 
 export function MotionPanel() {
-    const [width, startDrag] = useDraggable(288);
+    const [width, startDrag] = useDraggable(288, 224, 448);
     const resizableRef = useRef(null);
 
     const handleMouseDown = (e) => {
@@ -16,11 +16,11 @@ export function MotionPanel() {
     };
 
     return (
-        <div className="fixed left-0 top-14 bottom-0 flex flex-col max-w-112 min-w-56 bg-white z-10" style={{
-            width: `${width}px`
+        <div className="relative flex flex-col w-1/2 h-full bg-white z-10 pointer-events-auto" style={{
+            maxWidth: `${width}px`
         }} ref={resizableRef}>
             <div className="flex items-center justify-between pt-4 px-4 select-none">
-                <strong className="text-sm">Layers</strong>
+                <strong className="pb-2 text-sm">Layers</strong>
             </div>
             <div className="w-full h-full pb-4 overflow-y-auto">
                 {

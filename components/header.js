@@ -18,7 +18,7 @@ import {Button} from "@/components/ui/button";
 export function Header() {
     return (
         <div
-            className="fixed top-0 left-0 right-0 px-4 h-14 grid grid-cols-3 bg-white border-b-gray-300 border z-10">
+            className="fixed top-0 left-0 right-0 px-4 h-14 grid grid-cols-3 bg-white border-b-gray-300 border z-50">
             <div className="flex items-center justify-start">
                 <Tooltip>
                     <TooltipTrigger>
