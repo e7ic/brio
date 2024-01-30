@@ -21,86 +21,85 @@ export function PropertiesPanel() {
     return (
         <div className="relative h-full pt-4 w-72 bg-white z-10 pointer-events-auto">
             <div className="flex items-center justify-between px-4 select-none">
-                <Button variant="ghost" className="p-0 h-full cursor-pointer">
-                    <Tooltip>
-                        <TooltipTrigger>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-pointer">
                             <AlignLeftIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Align left</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button variant="ghost" className="p-0 h-full cursor-pointer">
-                    <Tooltip>
-                        <TooltipTrigger>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Align left</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-pointer">
                             <AlignHorizontalCenterIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Align horizontal center</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button variant="ghost" className="p-0 h-full cursor-pointer">
-                    <Tooltip>
-                        <TooltipTrigger>
+                        </Button></TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Align horizontal center</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-pointer">
                             <AlignRightIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Align right</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button variant="ghost" className="p-0 h-full cursor-pointer">
-                    <Tooltip>
-                        <TooltipTrigger>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Align right</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-pointer">
                             <AlignTopIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Align top</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button variant="ghost" className="p-0 h-full cursor-pointer">
-                    <Tooltip>
-                        <TooltipTrigger>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Align top</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-pointer">
                             <AlignVerticalCenterIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Align vertical center</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button variant="ghost" className="p-0 h-full cursor-pointer">
-                    <Tooltip>
-                        <TooltipTrigger>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Align vertical center</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-pointer">
                             <AlignBottomIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Align bottom</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button variant="ghost" className="p-0 h-full cursor-not-allowed">
-                    <Tooltip>
-                        <TooltipTrigger>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Align bottom</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-not-allowed">
                             <DistributeSpacingHorizontalIcon className="w-4 h-4 fill-muted"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Distribute horizontal spacing</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button variant="ghost" className="p-0 h-full cursor-not-allowed">
-                    <Tooltip>
-                        <TooltipTrigger>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Distribute horizontal spacing</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-full cursor-not-allowed">
                             <DistributeSpacingVerticalIcon className="w-4 h-4 fill-muted"/>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom" sideOffset={12}>
-                            <p>Distribute vertical spacing</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={12}>
+                        <p>Distribute vertical spacing</p>
+                    </TooltipContent>
+                </Tooltip>
             </div>
             <Separator className="my-2.5"/>
             <div className="px-4">
@@ -152,6 +151,9 @@ export function PropertiesPanel() {
                 </div>
             </div>
             <Separator className="my-2.5"/>
+            <div>
+
+            </div>
         </div>
     )
 }
