@@ -36,9 +36,8 @@ export default function App() {
         <main className="flex flex-col h-screen">
             <Header/>
             <InternalUI/>
-            <StackToolbar/>
             <div className="fixed left-0 top-14 right-0 bottom-0 flex justify-between pointer-events-none">
-                <MotionPanel nodes={nodes} />
+                <MotionPanel nodes={nodes}/>
                 <PropertiesPanel/>
             </div>
         </main>
