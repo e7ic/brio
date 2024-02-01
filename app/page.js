@@ -1,43 +1,26 @@
+"use client"
+
+import {useEffect} from "react";
 import {Header} from "@/components/header";
 import {InternalUI} from "@/components/internal-ui";
 import {MotionPanel} from "@/components/motion-panel";
 import {PropertiesPanel} from "@/components/properties-panel";
-import {StackToolbar} from "@/components/stack-toolbar";
-
-const nodes = [
-    {
-        name: "Text 012345",
-        type: "TEXT"
-    },
-    {
-        name: "Image",
-        type: "IMAGE"
-    },
-    {
-        name: "Rectangle",
-        type: "RRECT"
-    },
-    {
-        name: "Ellipse",
-        type: "ELLIPSE"
-    },
-    {
-        name: "Vector",
-        type: "VECTOR"
-    },
-    {
-        name: "Polygon",
-        type: "POLYGON"
-    }
-]
+import {useDesignStore} from "@/store";
 
 export default function App() {
+
+    const {basic, init} = useDesignStore()
+
+    useEffect(() => {
+        init().catch(err => console.error("Err", err))
+    }, [])
+
     return (
         <main className="flex flex-col h-screen">
             <Header/>
             <InternalUI/>
             <div className="fixed left-0 top-14 right-0 bottom-0 flex justify-between pointer-events-none">
-                <MotionPanel nodes={nodes}/>
+                <MotionPanel nodes={basic?.nodes}/>
                 <PropertiesPanel/>
             </div>
         </main>

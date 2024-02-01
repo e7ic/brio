@@ -86,4 +86,8 @@
     body {
         @apply bg-background text-foreground;
     }
+
+    .layer-input + .layer-action {
+        @apply !hidden;
+    }
 }
