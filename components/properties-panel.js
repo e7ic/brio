@@ -1,13 +1,14 @@
 "use client"
 
+import {useState} from "react";
 import {
     AlignBottomIcon,
     AlignHorizontalCenterIcon,
     AlignLeftIcon,
     AlignRightIcon,
     AlignTopIcon,
-    AlignVerticalCenterIcon,
-    CornersIcon, CornerTopLeftIcon,
+    AlignVerticalCenterIcon, CornerBottomLeftIcon, CornerBottomRightIcon,
+    CornersIcon, CornerTopLeftIcon, CornerTopRightIcon,
     DistributeSpacingHorizontalIcon,
     DistributeSpacingVerticalIcon,
     RotateIcon, UnLinkIcon
@@ -16,6 +17,7 @@ import {Button} from "@/components/ui/button";
 import {Separator} from "@/components/ui/separator";
 import {Input} from "@/components/ui/input";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
+import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 
 export function PropertiesPanel() {
     return (
@@ -108,45 +110,77 @@ export function PropertiesPanel() {
                     <div className="flex space-x-2">
                         <label className="flex items-center space-x-2 select-none">
                             <span className="block w-4 text-center text-xs text-muted-foreground">X</span>
-                            <Input className="p-0 border-none shadow-none h-6 focus-visible:ring-0 text-xs select-none"
-                                   defaultValue="120"/>
+                            <InteractiveInput value={0} onChange={e => {
+                                console.log(e)
+                            }}/>
                         </label>
                         <label className="flex items-center space-x-2 select-none">
                             <span className="block w-4 text-center text-xs text-muted-foreground">Y</span>
-                            <Input className="p-0 border-none shadow-none h-6 focus-visible:ring-0 text-xs"
-                                   defaultValue="120"/>
+                            <InteractiveInput value={0}/>
                         </label>
                         <Button variant="ghost" className="w-8" disabled></Button>
                     </div>
                     <div className="flex space-x-2">
                         <label className="flex items-center space-x-2 select-none">
                             <span className="block w-4 text-center text-xs text-muted-foreground">W</span>
-                            <Input className="p-0 border-none shadow-none h-6 focus-visible:ring-0 text-xs"
-                                   defaultValue="200"/>
+                            <InteractiveInput value={0}/>
                         </label>
                         <label className="flex items-center space-x-2 select-none">
                             <span className="block w-4 text-center text-xs text-muted-foreground">H</span>
-                            <Input className="p-0 border-none shadow-none h-6 focus-visible:ring-0 text-xs"
-                                   defaultValue="200"/>
+                            <InteractiveInput value={0}/>
                         </label>
-                        <Button variant="ghost" className="p-2 w-8 h-8">
-                            <UnLinkIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </Button>
+                        <Tooltip>
+                            <TooltipTrigger className="p-2 w-8 h-8">
+                                <UnLinkIcon className="w-4 h-4 fill-muted-foreground"/>
+                            </TooltipTrigger>
+                            <TooltipContent side="bottom">
+                                <p>Constrain proportions</p>
+                            </TooltipContent>
+                        </Tooltip>
                     </div>
                     <div className="flex space-x-2">
                         <label className="flex items-center space-x-2 select-none">
-                            <RotateIcon className="w-5 h-5 fill-muted-foreground"/>
-                            <Input className="p-0 border-none shadow-none h-6 focus-visible:ring-0 text-xs"
-                                   defaultValue="0°"/>
+                            <RotateIcon className="w-4 h-4 fill-muted-foreground"/>
+                            <InteractiveInput value={0}/>
                         </label>
                         <label className="flex items-center space-x-2 select-none">
-                            <CornerTopLeftIcon className="w-5 h-5 fill-muted-foreground"/>
-                            <Input className="p-0 border-none shadow-none h-6 focus-visible:ring-0 text-xs"
-                                   defaultValue="0"/>
+                            <CornerTopLeftIcon className="w-4 h-4 fill-muted-foreground"/>
+                            <InteractiveInput value={0}/>
                         </label>
-                        <Button variant="ghost" className="p-2 w-8 h-8">
-                            <CornersIcon className="w-4 h-4 fill-muted-foreground"/>
-                        </Button>
+                        <Popover>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <PopoverTrigger className="p-2 w-8 h-8">
+                                        <CornersIcon className="w-4 h-4 fill-muted-foreground"/>
+                                    </PopoverTrigger>
+                                </TooltipTrigger>
+                                <TooltipContent side="bottom">
+                                    <p>Independent corner</p>
+                                </TooltipContent>
+                            </Tooltip>
+                            <PopoverContent side="left" className="p-2 shadow-xl border-none">
+                                <span className="text-sm font-semibold">Corner radius</span>
+                                <Separator className="mt-2 mb-4"/>
+                                <ul className="grid grid-cols-2 gap-2.5">
+                                    <li className="flex items-center space-x-2">
+                                        <CornerTopLeftIcon className="w-4 h-4 fill-muted-foreground"/>
+                                        <InteractiveInput value={0}/>
+                                    </li>
+                                    <li className="flex items-center space-x-2">
+                                        <CornerTopRightIcon className="w-4 h-4 fill-muted-foreground"/>
+                                        <InteractiveInput value={0}/>
+                                    </li>
+                                    <li className="flex items-center space-x-2">
+                                        <CornerBottomLeftIcon className="w-4 h-4 fill-muted-foreground"/>
+                                        <InteractiveInput value={0}/>
+                                    </li>
+                                    <li className="flex items-center space-x-2">
+                                        <CornerBottomRightIcon className="w-4 h-4 fill-muted-foreground"/>
+                                        <InteractiveInput value={0}/>
+                                    </li>
+                                </ul>
+                            </PopoverContent>
+                        </Popover>
                     </div>
                 </div>
             </div>
@@ -156,4 +190,46 @@ export function PropertiesPanel() {
             </div>
         </div>
     )
+}
+
+const InteractiveInput = ({value, onChange}) => {
+    const [inputValue, setInputValue] = useState(value)
+    const handleFocus = (e) => {
+        e.target.select()
+    }
+
+    const handleBlur = (e) => {
+        if (/^\d+$/g.test(e.target.value)) {
+            setInputValue(e.target.value)
+        } else {
+            setInputValue(value)
+        }
+    }
+
+    const handleChange = (e) => {
+        setInputValue(e.target.value)
+    }
+
+    const handleKeyDown = e => {
+        if (e.key === "ArrowUp") {
+            e.preventDefault();
+            setInputValue(val => val + 1);
+            onChange?.(inputValue + 1);
+        }
+
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setInputValue(val => val - 1);
+            onChange?.(inputValue - 1);
+        }
+    }
+
+    return <Input
+        className="p-0 border-none shadow-none h-6 focus-visible:ring-0 text-xs"
+        value={inputValue}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+    />
 }

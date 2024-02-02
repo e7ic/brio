@@ -15,12 +15,12 @@ import {
 import {useDraggable} from "@/hooks/use-draggable";
 import {Input} from "@/components/ui/input";
 import {cn} from "@/lib/utils";
-import { useDesignStore } from "@/store";
+import {useDesignStore} from "@/store";
 
 export function MotionPanel({nodes}) {
     const [width, startDrag] = useDraggable(288, 224, 448);
     const resizableRef = useRef(null);
-    const { basic, update } = useDesignStore()
+    const {basic, update} = useDesignStore()
 
     const handleMouseDown = (e) => {
         const startRect = resizableRef.current.getBoundingClientRect();
@@ -51,7 +51,7 @@ export function MotionPanel({nodes}) {
                         </Button>
                         <EditableElement value={node.name} onChange={async e => {
                             const payload = basic?.nodes?.map((item, i) => {
-                                if(i === index) {
+                                if (i === index) {
                                     item.name = e
                                 }
                                 return item
@@ -61,12 +61,12 @@ export function MotionPanel({nodes}) {
                             })
                         }}>
                                 <span
-                                    className={cn("block text-xs cursor-default truncate select-none", {"text-muted-foreground/50": !node.visible})}>{node.name}</span>
+                                    className={cn("block tex text-xs cursor-default truncate select-none", {"text-muted-foreground/50": !node.visible})}>{node.name}</span>
                         </EditableElement>
                         <div className="hidden flex-shrink-0 space-x-2 group-hover:flex layer-action">
                             <Button variant="ghost" className="p-0 h-full" onClick={async () => {
                                 const payload = basic?.nodes?.map((item, i) => {
-                                    if(i === index) {
+                                    if (i === index) {
                                         item.locked = !item.locked
                                     }
                                     return item
@@ -82,19 +82,20 @@ export function MotionPanel({nodes}) {
                             </Button>
                             <Button variant="ghost" className="p-0 h-full" onClick={async () => {
                                 const payload = basic?.nodes?.map((item, i) => {
-                                    if(i === index) {
+                                    if (i === index) {
                                         item.visible = !item.visible
                                     }
                                     return item
                                 })
-                                await update({
-                                    nodes: payload
-                                })
+                                await update({nodes: payload})
                             }}>
-                                {node.visible ? <EyeIcon
-                                        className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})}/> :
-                                    <EyeClosedIcon
-                                        className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})}/>}
+                                {
+                                    node.visible ?
+                                        <EyeIcon
+                                            className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})} /> :
+                                        <EyeClosedIcon
+                                            className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})} />
+                                }
                             </Button>
                         </div>
                     </div>)
