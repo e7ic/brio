@@ -4,8 +4,11 @@ import {debounce} from "@/lib/utils";
 
 export const useDesignStore = create((set) => ({
     basic: {},
+    currentId: null,
+    setCurrentId: (id) => set({ currentId: id }),
     init: async () => {
         localforage.getItem("design").then(res => {
+            console.log(res)
             set({basic: res})
         }).catch(err => {
             console.error("Err:", err)

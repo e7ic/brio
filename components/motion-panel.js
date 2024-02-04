@@ -10,7 +10,7 @@ import {
     RectangleLineIcon,
     UnlockIcon,
     CircleIcon,
-    VectorLineIcon, EyeClosedIcon, LockIcon
+    VectorLineIcon, EyeClosedIcon, LockIcon, FolderIcon, ArrowRightFillIcon
 } from "@/components/icons";
 import {useDraggable} from "@/hooks/use-draggable";
 import {Input} from "@/components/ui/input";
@@ -20,7 +20,7 @@ import {useDesignStore} from "@/store";
 export function MotionPanel({nodes}) {
     const [width, startDrag] = useDraggable(288, 224, 448);
     const resizableRef = useRef(null);
-    const {basic, update} = useDesignStore()
+    const {basic, currentId, setCurrentId, update} = useDesignStore()
 
     const handleMouseDown = (e) => {
         const startRect = resizableRef.current.getBoundingClientRect();
@@ -38,15 +38,23 @@ export function MotionPanel({nodes}) {
                 {
                     nodes?.map((node, index) => <div
                         key={index}
+                        onClick={() => {
+                            setCurrentId(node.id)
+                        }}
                         className={cn("group flex items-center px-4 space-x-2 w-full h-8 border border-transparent", {
-                            "hover:border-border": node.visible
+                            "hover:border-border": currentId !== node.id && node.visible,
+                            "bg-muted": currentId === node.id
                         })}>
+                        <Button variant="ghost" className="flex-shrink-0 p-0 w-4 h-fit hover:bg-transparent">
+                            {node.type === "GROUP" && <ArrowRightFillIcon className="w-full h-4 fill-muted-foreground/50"/>}
+                        </Button>
                         <Button variant="ghost" className="p-0 h-fit" onDoubleClick={() => {
                             console.log("position")
                         }}>
                             <LayerIcon type={node.type}
                                        className={cn("flex-shrink-0 w-4 h-4 fill-muted-foreground/50", {
-                                           "group-hover:fill-muted-foreground": node.visible
+                                           "group-hover:fill-muted-foreground": node.visible,
+                                           "fill-muted-foreground": currentId === node.id
                                        })}/>
                         </Button>
                         <EditableElement value={node.name} onChange={async e => {
@@ -92,9 +100,9 @@ export function MotionPanel({nodes}) {
                                 {
                                     node.visible ?
                                         <EyeIcon
-                                            className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})} /> :
+                                            className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})}/> :
                                         <EyeClosedIcon
-                                            className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})} />
+                                            className={cn("w-3 h-3", {"fill-muted-foreground/50": !node.visible})}/>
                                 }
                             </Button>
                         </div>
@@ -121,6 +129,8 @@ const LayerIcon = ({type, ...props}) => {
             return <VectorLineIcon {...props} />
         case "IMAGE":
             return <ImageIcon {...props} />
+        case "GROUP":
+            return <FolderIcon {...props} />
     }
 }
 

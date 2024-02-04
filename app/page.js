@@ -6,6 +6,7 @@ import {InternalUI} from "@/components/internal-ui";
 import {MotionPanel} from "@/components/motion-panel";
 import {PropertiesPanel} from "@/components/properties-panel";
 import {useDesignStore} from "@/store";
+import {generateMixed8DigitID} from "@/lib/utils";
 
 export default function App() {
 
