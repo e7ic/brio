@@ -104,7 +104,7 @@ const LayerCell = ({ node }) => {
             })
         }}>
                                 <span
-                                    className={cn("block tex text-xs cursor-default truncate select-none", {"text-muted-foreground/50": !node.visible})}>{node.name}</span>
+                                    className={cn("block tex text-xs cursor-default truncate select-none", {"text-muted-foreground/50": !node.visible})}>{node?.name}</span>
         </EditableElement>
         <div className="hidden flex-shrink-0 space-x-2 group-hover:flex layer-action">
             <Button variant="ghost" className="p-0 h-full" onClick={async () => {

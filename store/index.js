@@ -1,15 +1,17 @@
 import {create} from "zustand";
 import localforage from "localforage";
 import {debounce} from "@/lib/utils";
+import { TOOLS } from "@/constants/tools"
 
 export const useDesignStore = create((set) => ({
     basic: {},
     currentId: null,
+    currentTool: TOOLS.MOVE,
     setCurrentId: (id) => set({ currentId: id }),
+    setCurrentTool: (tool) => set({ currentTool: tool }),
     init: async () => {
         localforage.getItem("design").then(res => {
-            console.log(res)
-            set({basic: res})
+            set({basic: res ?? {}})
         }).catch(err => {
             console.error("Err:", err)
         })
