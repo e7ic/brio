@@ -1,14 +1,47 @@
 "use client"
 
+import {useState, useEffect} from "react";
 import {ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger, ContextMenuSeparator, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent} from "@/components/ui/context-menu";
 import {StackToolbar} from "@/components/stack-toolbar";
+import { useDesignStore } from "@/store";
+import {cn} from "@/lib/utils";
+import {TOOLS} from "@/constants/tools";
 
 export function InternalUI() {
+    const { currentTool, setCurrentTool } = useDesignStore();
+    const [isGrabbing, setIsGrabbing] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("keydown", function (e) {
+            if(e.code === "Space") {
+                setCurrentTool(TOOLS.GRAB)
+                console.log(currentTool)
+            }
+        })
+
+        window.addEventListener("keyup", function (e) {
+            if(e.code === "Space") {
+                setCurrentTool(TOOLS.MOVE)
+            }
+        })
+
+        return () => {
+            window.removeEventListener("keydown", function (){})
+            window.removeEventListener("keyup", function (){})
+        }
+    }, [])
+
     return (
         <>
             <ContextMenu>
                 <ContextMenuTrigger asChild>
-                    <canvas className="w-full h-full bg-zinc-100"></canvas>
+                    <canvas
+                        onMouseDown={() => setIsGrabbing(true)}
+                        onMouseUp={() => setIsGrabbing(false)}
+                        className={cn("w-full h-full bg-zinc-100 cursor-move", {
+                        "cursor-grab": !isGrabbing && currentTool === TOOLS.GRAB,
+                        "cursor-grabbing": isGrabbing  && currentTool === TOOLS.GRAB
+                    })}/>
                 </ContextMenuTrigger>
                 <ContextMenuContent className="w-fit rounded-xl shadow-lg border-none">
                     <ContextMenuSub className="justify-between space-x-2">
